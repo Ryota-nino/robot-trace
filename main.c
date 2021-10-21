@@ -1,9 +1,24 @@
+int state = HIGH;
+int previous = LOW;
+
 void setup()
 {
-    // put your setup code here, to run once:
+    pinMode(13, OUTPUT);
+    pinMode(27, INPUT);
 }
 
 void loop()
 {
-    // put your main code here, to run repeatedly:
+    int val = digitalRead(27);
+
+    if (val == HIGH && previous == LOW)
+    {
+        if (state == HIGH)
+            state = LOW;
+        else
+            state = HIGH;
+    }
+
+    digitalWrite(13, state);
+    previous = val;
 }
